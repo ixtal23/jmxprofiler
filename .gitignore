@@ -1,0 +1,25 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Eclipse
+.settings/
+.metadata/
+.classpath
+.project
+
+# Generated
+target/
+javadoc/
+bin/
+
+# Logs
+log/
+*.log
+
+# Misc
+.DS_Store
+*.tmp
+*.backup
+*.bak
+*.bck

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration strict="true" status="warn"> <!-- trace, debug, info, warn, error -->
+    <!--
+        For details of this file format and content please refer to
+        http://logging.apache.org/log4j/2.x/manual/configuration.html
+    -->
+    <Appenders>
+        <Appender
+                type="Console"
+                name="prodConsole"
+                target="SYSTEM_OUT">
+            <Filter
+                    type="ThresholdFilter"
+                    level="INFO"
+                    onMatch="ACCEPT"
+                    onMismatch="DENY"/>
+            <Layout
+                    type="PatternLayout"
+                    pattern="%m%n"/>
+        </Appender>
+
+        <!--Appender
+                type="Console"
+                name="debugConsole"
+                target="SYSTEM_OUT">
+            <Filter
+                    type="ThresholdFilter"
+                    level="DEBUG"
+                    onMatch="ACCEPT"
+                    onMismatch="DENY"/>
+            <Layout
+                    type="PatternLayout"
+                    pattern="%d{HH:mm:ss,SSS} %-5p %m%n"/>
+        </Appender-->
+
+        <!--Appender
+                type="RollingFile"
+                name="prodLogFile"
+                fileName="${env:JMXPROFILER_LOG}/jmxprofiler.log"
+                filePattern="${env:JMXPROFILER_LOG}/jmxprofiler.%d{yyyy-MM-dd}.%i.log"
+                append="true"
+                immediateFlush="false"
+                bufferedIO="true"
+                bufferSize="8192">
+            <Filter
+                    type="ThresholdFilter"
+                    level="INFO"
+                    onMatch="ACCEPT"
+                    onMismatch="DENY"/>
+            <Layout
+                    type="PatternLayout"
+                    pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p %m%n"/>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </Appender-->
+
+        <!--Appender
+                type="RollingFile"
+                name="debugLogFile"
+                fileName="${env:JMXPROFILER_LOG}/jmxprofiler.debug.log"
+                filePattern="${env:JMXPROFILER_LOG}/jmxprofiler.debug.%d{yyyy-MM-dd}.%i.log"
+                append="true"
+                immediateFlush="false"
+                bufferedIO="false"
+                bufferSize="0">
+            <Filter
+                    type="ThresholdFilter"
+                    level="DEBUG"
+                    onMatch="ACCEPT"
+                    onMismatch="DENY"/>
+            <Layout
+                    type="PatternLayout"
+                    pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p %t %C{1}.%M %m%n"/>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </Appender-->
+
+        <!--Appender
+                type="RollingFile"
+                name="errorLogFile"
+                fileName="${env:JMXPROFILER_LOG}/jmxprofiler.error.log"
+                filePattern="${env:JMXPROFILER_LOG}/jmxprofiler.error.%d{yyyy-MM-dd}.%i.log"
+                append="true"
+                immediateFlush="true"
+                bufferedIO="false"
+                bufferSize="0">
+            <Filter
+                    type="ThresholdFilter"
+                    level="WARN"
+                    onMatch="ACCEPT"
+                    onMismatch="DENY"/>
+            <Layout
+                    type="PatternLayout"
+                    pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p %t %C{1}.%M %m%n"/>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </Appender-->
+    </Appenders>
+
+    <Loggers>
+        <Root level="DEBUG"> <!-- TRACE, DEBUG, INFO, WARN, ERROR or FATAL -->
+            <AppenderRef ref="prodConsole"/>
+            <!--AppenderRef ref="debugConsole"/-->
+
+            <!--AppenderRef ref="prodLogFile"/-->
+            <!--AppenderRef ref="debugLogFile"/-->
+            <!--AppenderRef ref="errorLogFile"/-->
+        </Root>
+    </Loggers>
+</Configuration>
